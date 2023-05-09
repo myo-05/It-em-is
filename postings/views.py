@@ -119,3 +119,14 @@ class MyCommentView(APIView):
         comments = Comment.objects.filter(query)
         serializer = CommentSerializer(comments, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
+        
+class LikeView(APIView):
+    def post(self, request, id):
+        posting = get_object_or_404(Postings, id=id)
+        if request.user in posting.likes.all():
+            # 유저가 좋아요 명단 안에 있을 때
+            posting.likes.remove(request.user)
+            return Response("좋아요 취소", status=status.HTTP_200_OK)
+        else:
+            posting.likes.add(request.user)
+            return Response("좋아요", status=status.HTTP_200_OK)

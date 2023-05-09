@@ -15,6 +15,7 @@ class Postings(models.Model):
         default='postings/statics/default.png', 
         validators=[FileExtensionValidator(allowed_extensions=['jpg', 'jpeg', 'png'])],
         )
+    likes = models.ManyToManyField(User, related_name="like_articles")
 
     def __str__(self):
         return self.title
