@@ -344,3 +344,7 @@ $RECYCLE.BIN/
 *.lnk
 
 # End of https://www.toptal.com/developers/gitignore/api/macos,windows,python,django,visualstudiocode,dotenv
+
+# migrations
+*/migrations/*
+!*/migrations/__init__.py
