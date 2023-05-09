@@ -53,15 +53,12 @@ class PostingDetail(APIView):
             return Response({'message':'권한이 없습니다'},status=status.HTTP_401_UNAUTHORIZED)
         
 class LikeView(APIView):
-    def get(self, request,id):
-        Posting = get_object_or_404(Postings, id=id)
-        if request.user in Postings.likes.all():
+    def post(self, request, id):
+        posting = get_object_or_404(Postings, id=id)
+        if request.user in posting.likes.all():
             # 유저가 좋아요 명단 안에 있을 때
-            Posting.likes.remove(request.user)
+            posting.likes.remove(request.user)
             return Response("좋아요 취소", status=status.HTTP_200_OK)
         else:
-            Posting.likes.add(request.user)
+            posting.likes.add(request.user)
             return Response("좋아요", status=status.HTTP_200_OK)
-
-    def post(self, request,id):
-        pass
