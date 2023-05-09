@@ -1,4 +1,4 @@
-from .models import Postings
+from .models import Postings, Comment
 import datetime
 from rest_framework import serializers
 
@@ -22,3 +22,16 @@ class PostingPutSerializer(serializers.ModelSerializer):
     class Meta:
         model = Postings 
         fields = ['title','content','image']
+
+class CommentSerializer(serializers.ModelSerializer):
+    # 댓글 조회 시리얼라이저-직렬화
+    # class Meta:
+        model = Comment
+    pass
+
+class CommentSerializer(serializers.ModelSerializer):
+    # 댓글 생성 시리얼라이저-직렬화, 검증까지
+    # class Meta:
+        model = Comment
+
+    pass
