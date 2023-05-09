@@ -1,6 +1,5 @@
 from django.contrib import admin
-
-from postings.models import Article
+from .models import Postings
 
 # Register your models here.
-admin.site.register(Article)
+admin.site.register(Postings)
