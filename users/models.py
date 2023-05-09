@@ -41,6 +41,8 @@ class User(AbstractBaseUser):
     )
     is_active = models.BooleanField(default=True)
     is_admin = models.BooleanField(default=False)
+    # 닉네임 추가
+    nickname = models.CharField(max_length=16, unique=True, default="닉네임을 입력해주세요")
 
     objects = UserManager()
 
