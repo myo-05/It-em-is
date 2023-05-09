@@ -22,6 +22,7 @@ class CommentCreateSerializer(serializers.ModelSerializer):
 
 class PostingSerializer(serializers.ModelSerializer):
     user = serializers.SerializerMethodField()
+    likes_count = serializers.SerializerMethodField()
     # 게시물에 작성된 댓글set과 댓글 수
     comment_set = CommentSerializer(many=True)
     comments_count = serializers.SerializerMethodField()
@@ -32,9 +33,13 @@ class PostingSerializer(serializers.ModelSerializer):
     def get_comments_count(self, obj):
         return obj.comment_set.count()
         
+
+    def get_likes_count(self, obj):
+        return obj.likes.count()
+        
     class Meta:
         model = Postings
-        fields = ['user','id','title','content','image', 'comment_set', 'comments_count']
+        fields = ['user','id','title','content','image', 'comment_set', 'comments_count','likes_count',]
 
 class PostingCreateSerializer(serializers.ModelSerializer):
     class Meta:
