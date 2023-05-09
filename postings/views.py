@@ -1,4 +1,4 @@
-from .models import Postings, Comment
+from .models import Postings, Comments
 from .serializers import PostingSerializer,PostingCreateSerializer,PostingPutSerializer, CommentSerializer, CommentCreateSerializer
 from rest_framework import status , permissions
 from rest_framework.generics import get_object_or_404
@@ -82,7 +82,7 @@ class CommentDetailView(APIView):
     permission_classes = [permissions.IsAuthenticated]
     def put(self, request, pk):
         # 수정할 댓글 불러오기
-        comment = get_object_or_404(Comment, id=pk)
+        comment = get_object_or_404(Comments, id=pk)
         # 댓글 작성자와 로그인한 유저가 같으면
         if request.user == comment.user:
         # CommentCreateSerializer로 입력받은 데이터 직렬화, 검증
@@ -100,7 +100,7 @@ class CommentDetailView(APIView):
     
     def delete(self, request, pk):
         # 삭제할 댓글 불러오기
-        comment = get_object_or_404(Comment, id=pk)
+        comment = get_object_or_404(Comments, id=pk)
         # 댓글 작성자 == 로그인한 유저
         if request.user == comment.user:
         # comment 삭제
@@ -116,7 +116,7 @@ class MyCommentView(APIView):
             return Response("로그인 먼저 해주세요", status=status.HTTP_401_UNAUTHORIZED)
         user = request.user.id
         query = Q(user=user)
-        comments = Comment.objects.filter(query)
+        comments = Comments.objects.filter(query)
         serializer = CommentSerializer(comments, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
         

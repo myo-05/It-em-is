@@ -1,4 +1,4 @@
-from .models import Postings, Comment
+from .models import Postings, Comments
 import datetime
 from rest_framework import serializers
 
@@ -10,14 +10,14 @@ class CommentSerializer(serializers.ModelSerializer):
     
     # 댓글 조회 시리얼라이저-직렬화
     class Meta:
-        model = Comment
+        model = Comments
         fields = ['id', 'posting', 'user', 'comment', 'created_at', 'updated_at' ]
 
 
 class CommentCreateSerializer(serializers.ModelSerializer):
     # 댓글 생성 시리얼라이저-직렬화, 검증까지
     class Meta:
-        model = Comment
+        model = Comments
         fields = ['comment',]   # json으로 받을 데이터 필드
 
 class PostingSerializer(serializers.ModelSerializer):

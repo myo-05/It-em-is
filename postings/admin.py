@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Postings, Comment
+from .models import Postings, Comments
 
 # Register your models here.
 class PostingsAdmin(admin.ModelAdmin):
@@ -10,4 +10,4 @@ class CommentAdmin(admin.ModelAdmin):
 
 
 admin.site.register(Postings, PostingsAdmin)
-admin.site.register(Comment, CommentAdmin)
+admin.site.register(Comments, CommentAdmin)
