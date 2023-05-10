@@ -59,8 +59,8 @@ class CommentView(APIView):
         # 게시물 id 가져오기
         posting = Postings.objects.get(id=posting_id)
         # 게시물 id에 해당하는 comments들 모두 가져오기
-        comments = posting.comment_set.all()
-        # CommentSerializer로 직렬화하기(불러온 comment_set)
+        comments = posting.comments_set.all()
+        # CommentSerializer로 직렬화하기(불러온 comments_set)
         serializer = CommentSerializer(comments, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
     
