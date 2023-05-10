@@ -1,5 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import BaseUserManager, AbstractBaseUser
+from django.core.validators import FileExtensionValidator
+
 
 
 class UserManager(BaseUserManager):
@@ -42,11 +44,20 @@ class User(AbstractBaseUser):
     followings = models.ManyToManyField("self", symmetrical=False, related_name="followers", blank=True)
     is_active = models.BooleanField(default=True)
     is_admin = models.BooleanField(default=False)
+    # 닉네임 추가
+    nickname = models.CharField(max_length=16, unique=True)
+    # 이미지 추가
+    image = models.ImageField(
+        upload_to='postings/static/', 
+        blank=True, 
+        default='postings/statics/default.png', 
+        validators=[FileExtensionValidator(allowed_extensions=['jpg', 'jpeg', 'png'])],
+        )
 
     objects = UserManager()
 
     USERNAME_FIELD = "email"
-    REQUIRED_FIELDS = []
+    REQUIRED_FIELDS = ['nickname',]
 
     def __str__(self):
         return self.email
