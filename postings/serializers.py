@@ -28,7 +28,7 @@ class PostingSerializer(serializers.ModelSerializer):
     comments_count = serializers.SerializerMethodField()
     
     def get_user(self, obj):
-        return obj.user.email
+        return obj.user.nickname
     
     def get_comments_count(self, obj):
         return obj.comment_set.count()
