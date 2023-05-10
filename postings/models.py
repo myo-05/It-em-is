@@ -20,7 +20,7 @@ class Postings(models.Model):
     def __str__(self):
         return self.title
     
-class Comment(models.Model):
+class Comments(models.Model):
     # 댓글 작성자 = 유저모델 FK로 받아오기
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     # # 게시글에 댓글을 작성함으로 게시글도 FK로 받아오기
