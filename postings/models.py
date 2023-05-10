@@ -5,14 +5,15 @@ from django.core.validators import FileExtensionValidator
 # Create your models here.
 class Postings(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    title = models.CharField(max_length=100)
-    content = models.TextField()
+    title = models.CharField("제목",max_length=100)
+    content = models.TextField("내용")
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     image = models.ImageField(
-        upload_to='postings/static/', 
-        blank=True, 
-        default='postings/statics/default.png', 
+        "게시글 썸네일",
+        upload_to='postings/static/',
+        blank=True,
+        default='postings/statics/default.png',
         validators=[FileExtensionValidator(allowed_extensions=['jpg', 'jpeg', 'png'])],
         )
     likes = models.ManyToManyField(User, related_name="like_articles")
