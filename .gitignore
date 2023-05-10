@@ -348,3 +348,6 @@ $RECYCLE.BIN/
 # migrations
 */migrations/*
 !*/migrations/__init__.py
+
+#my_settings
+my_settings.py
