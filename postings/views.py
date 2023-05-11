@@ -13,7 +13,7 @@ class PostingView(APIView):
     def get(self,request):
         postings = Postings.objects.all()
         serialize = PostingSerializer(postings, many=True)
-        return Response(serialize.data)
+        return Response(serialize.data, status=status.HTTP_200_OK)
     
     def post(self,request):
         if not request.user.is_authenticated:
