@@ -11,7 +11,7 @@ class Postings(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
     image = models.ImageField(
         "게시글 썸네일",
-        upload_to='postings/static/',
+        upload_to='postings/statics/',
         blank=True,
         default='postings/statics/default.png',
         validators=[FileExtensionValidator(allowed_extensions=['jpg', 'jpeg', 'png'])],
