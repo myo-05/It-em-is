@@ -27,3 +27,8 @@ class CustomTokenObtainPairSerializer(TokenObtainPairSerializer):
         token = super().get_token(user)
         token['email'] = user.email
         return token
+    
+class ModifyingPutSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User 
+        fields = ['title','content','image']
