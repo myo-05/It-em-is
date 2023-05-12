@@ -46,13 +46,13 @@ class User(AbstractBaseUser):
     is_admin = models.BooleanField(default=False)
     # 닉네임 추가
     nickname = models.CharField(max_length=16, unique=True)
-    # 이미지 추가
-    image = models.ImageField(
-        upload_to='postings/static/', 
-        blank=True, 
-        default='postings/statics/default.png', 
-        validators=[FileExtensionValidator(allowed_extensions=['jpg', 'jpeg', 'png'])],
-        )
+    # 이미지 추가 (회원가입 시 이미지 추가 구현 x)
+    # image = models.ImageField(
+    #     upload_to='postings/static/', 
+    #     blank=True, 
+    #     default='postings/statics/default.png', 
+    #     validators=[FileExtensionValidator(allowed_extensions=['jpg', 'jpeg', 'png'])],
+    #     )
 
     objects = UserManager()
 
