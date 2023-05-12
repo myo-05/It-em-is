@@ -12,7 +12,6 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 
 from pathlib import Path
 import os
-import my_settings as my_settings
 from datetime import timedelta
 import my_settings
 
