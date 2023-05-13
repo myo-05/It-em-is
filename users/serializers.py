@@ -31,4 +31,11 @@ class CustomTokenObtainPairSerializer(TokenObtainPairSerializer):
 class ModifyingPutSerializer(serializers.ModelSerializer):
     class Meta:
         model = User 
-        fields = ['title','content','image']
+        fields = ['nickname','password','password2']
+
+    def update(self, validated_data):
+        user = super().update(validated_data)
+        password = user.password
+        user.set_password(password)
+        user.save()
+        return user

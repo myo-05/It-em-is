@@ -35,15 +35,13 @@ class followView(APIView):
             you.followers.add(me)
             return Response("팔로우 완료!",status=status.HTTP_200_OK)
         
-class ProfileModify(APIView):
-    def put(self,request,id):
-        modifying = get_object_or_404(User, id=id)
-        if request.user == modifying.user:
-            serializer = ModifyingPutSerializer(modifying,data=request.data)
-            if serializer.is_valid():
-                serializer.save()
-                return Response(serializer.data)
-            print(serializer.errors)
-            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-        else:
-            return Response({'message':'권한이 없습니다'},status=status.HTTP_401_UNAUTHORIZED)
+class profileModifyView(APIView):
+    def put(self,request):
+        serializer = ModifyingPutSerializer(data=request.data)
+        if serializer.is_valid(): #유효하다면
+            user = request.user # 요청받은 유저를 본래 유저로 넣고
+            user.set_password(serializer.validated_data.get('password')) 
+            user.username = serializer.validated_data.get('nickname')
+            user.save() # 저장
+            return Response({'message': 'User information updated successfully.'}, status=status.HTTP_200_OK)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
