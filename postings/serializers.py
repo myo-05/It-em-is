@@ -39,14 +39,16 @@ class PostingSerializer(serializers.ModelSerializer):
         
     class Meta:
         model = Postings
-        fields = ['user','id','title','content','image', 'comments_set', 'comments_count','likes_count',]
+        fields = ['user','id','title','content','image', 'comments_set', 'comments_count','likes_count']
 
 class PostingCreateSerializer(serializers.ModelSerializer):
     class Meta:
         model = Postings 
-        fields = ['title','content','image','url']
+        # fields = ['title','content','image','url']
+        fields = ['title','content','image']
         
 class PostingPutSerializer(serializers.ModelSerializer):
     class Meta:
         model = Postings 
-        fields = ['title','content','image','url']
+        # fields = ['title','content','image','url']
+        fields = ['title','content','image']

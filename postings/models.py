@@ -14,10 +14,10 @@ class Postings(models.Model):
         upload_to='postings/statics/',
         blank=True,
         default='postings/statics/default.png',
-        validators=[FileExtensionValidator(allowed_extensions=['jpg', 'jpeg', 'png'])],
+        validators=[FileExtensionValidator(allowed_extensions=['jpg', 'jpeg', 'png','gif'])],
         )
     likes = models.ManyToManyField(User, related_name="like_articles")
-    url = models.URLField("URL", blank=True, null=True)
+    # url = models.TextField("URL", blank=True, null=True)
 
     def __str__(self):
         return self.title
